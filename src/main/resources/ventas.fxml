@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.papeleria.inventariopapeleria.controller.VentasController" stylesheets="@styles.css">
+    <TextField fx:id="buscarField" promptText="Buscar producto" onKeyReleased="#buscarProducto"/>
+    <ListView fx:id="sugerenciasList" prefHeight="100" onMouseClicked="#agregarProducto"/>
+    <TableView fx:id="ventasTable">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="100"/>
+            <TableColumn fx:id="codigoColumn" text="Código" prefWidth="80"/>
+            <TableColumn fx:id="precioVentaColumn" text="Precio Venta" prefWidth="100"/>
+            <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="80"/>
+        </columns>
+    </TableView>
+    <Button text="Confirmar Venta" onAction="#confirmarVenta" styleClass="button"/>
+</VBox>

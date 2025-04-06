@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.papeleria.inventariopapeleria.controller.ActualizarProductoController" stylesheets="@styles.css">
+    <TableView fx:id="productosTable" onMouseClicked="#seleccionarProducto">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="100"/>
+            <TableColumn fx:id="codigoColumn" text="Código" prefWidth="80"/>
+            <TableColumn fx:id="precioVentaColumn" text="Precio Venta" prefWidth="100"/>
+            <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="80"/>
+            <TableColumn fx:id="categoriaColumn" text="Categoría" prefWidth="100"/>
+            <TableColumn fx:id="marcaColumn" text="Marca" prefWidth="100"/>
+        </columns>
+    </TableView>
+    <TextField fx:id="nombreField" promptText="Nombre"/>
+    <TextField fx:id="descripcionField" promptText="Descripción"/>
+    <TextField fx:id="codigoField" promptText="Código Único"/>
+    <TextField fx:id="precioVentaField" promptText="Precio Venta"/>
+    <TextField fx:id="precioCostoField" promptText="Precio Costo"/>
+    <TextField fx:id="categoriaField" promptText="Categoría"/>
+    <TextField fx:id="marcaField" promptText="Marca"/>
+    <TextField fx:id="proveedorField" promptText="Proveedor"/>
+    <TextField fx:id="cantidadField" promptText="Cantidad"/>
+    <Button text="Actualizar" onAction="#actualizarProducto" styleClass="button"/>
+</VBox>
