@@ -1,0 +1,68 @@
+.root {
+    -fx-background-color: #F3F6F9;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-max-width: 900;
+    -fx-max-height: 700;
+}
+
+/* Tabla */
+.modern-table {
+    -fx-background-color: white;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 8;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.05), 5, 0.0, 0, 2);
+    -fx-max-width: 800;
+    -fx-max-height: 400;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2F80ED;
+    -fx-border-radius: 8 8 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-border-color: #E0E0E0;
+    -fx-font-size: 12px;
+    -fx-text-fill: #333333;
+}
+
+/* Campos de texto */
+.input-field {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-background-color: white;
+    -fx-border-color: #CCC;
+    -fx-padding: 6 10;
+    -fx-font-size: 13px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.03), 1, 0, 0, 1);
+}
+
+/* Botón */
+.confirm-button {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 35px;
+    -fx-background-radius: 8;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #1E6FD8;
+}
+
+.confirm-button:pressed {
+    -fx-background-color: #155FC0;
+}

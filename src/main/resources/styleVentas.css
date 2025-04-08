@@ -1,0 +1,76 @@
+.root {
+    -fx-background-color: #F3F6F9;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Input de búsqueda */
+.input-field {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-background-color: white;
+    -fx-border-color: #CCC;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.03), 1, 0, 0, 1);
+}
+
+/* Lista de sugerencias */
+.sugerencias-list {
+    -fx-background-radius: 10;
+    -fx-background-color: white;
+    -fx-border-color: #DDD;
+    -fx-padding: 5;
+    -fx-font-size: 14px;
+}
+
+/* Tabla de ventas */
+.modern-table {
+    -fx-background-color: white;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.05), 5, 0.0, 0, 2);
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2F80ED;
+    -fx-border-radius: 10 10 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-size: 35;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-border-color: #E0E0E0;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+
+
+/* Botón de confirmar */
+.confirm-button {
+    -fx-background-color: #27AE60;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 10;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #219653;
+}
+
+.confirm-button:pressed {
+    -fx-background-color: #1B874A;
+}

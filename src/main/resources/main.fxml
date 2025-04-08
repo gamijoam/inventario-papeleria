@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.papeleria.inventariopapeleria.controller.MainController" stylesheets="@styles.css">
-    <Button text="Agregar Producto" onAction="#abrirAgregarProducto" styleClass="button"/>
-    <Button text="Eliminar Producto" onAction="#abrirEliminarProducto" styleClass="button"/>
-    <Button text="Actualizar Producto" onAction="#abrirActualizarProducto" styleClass="button"/>
-    <Button text="Ventas" onAction="#abrirVentas" styleClass="button"/>
-    <Button text="Inventario" onAction="#abrirInventario" styleClass="button"/>
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.papeleria.inventariopapeleria.controller.MainController"
+      style="-fx-background-color: #F5F5F5; -fx-padding: 40;" stylesheets="@stylesMain.css">
+
+    <MFXButton text="Agregar Producto" onAction="#abrirAgregarProducto" styleClass="menu-button" />
+
+    <MFXButton text="Eliminar Producto" onAction="#abrirEliminarProducto" styleClass="menu-button" />
+
+    <MFXButton text="Actualizar Producto" onAction="#abrirActualizarProducto" styleClass="menu-button" />
+
+    <MFXButton text="Ventas" onAction="#abrirVentas" styleClass="menu-button" />
+
+    <MFXButton text="Inventario" onAction="#abrirInventario" styleClass="menu-button" />
+
+    <MFXButton text="Configuracion Dolar" onAction="#abrirConfiguracionDolar" styleClass="menu-button" />
 </VBox>

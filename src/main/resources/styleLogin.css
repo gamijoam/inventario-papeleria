@@ -1,0 +1,60 @@
+.root {
+    -fx-background-color: #F3F6F9;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.title-label {
+    -fx-font-size: 28px;
+    -fx-text-fill: #FF5959;
+    -fx-font-weight: bold;
+}
+
+.text-field, .password-field {
+    -fx-pref-width: 250px;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #D3D3D3;
+    -fx-border-width: 1px;
+    -fx-padding: 10px;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #FF5959;
+}
+
+.login-button {
+    -fx-background-color: #FF5959;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 20px; /* Cambié "20" a "20px" para consistencia */
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #FF3B3B;
+}
+
+.login-button:pressed {
+    -fx-background-color: #D12B2B;
+}
+
+/* Estilos del botón Aceptar (sin usar en este FXML, pero lo dejamos por si lo necesitas después) */
+.accept-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 20px;
+    -fx-cursor: hand;
+}
+
+.accept-button:hover {
+    -fx-background-color: #45a049;
+}
+
+.accept-button:pressed {
+    -fx-background-color: #2e7d32;
+}

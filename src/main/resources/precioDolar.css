@@ -1,0 +1,58 @@
+/* Estilo global */
+.root {
+    -fx-background-color: #F3F6F9;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-padding: 20;
+}
+
+/* Título */
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Etiquetas */
+.label-info {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+/* Campos de texto */
+.input-field {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-background-color: white;
+    -fx-border-color: #CCC;
+    -fx-padding: 6 10;
+    -fx-font-size: 13px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.03), 1, 0, 0, 1);
+}
+
+/* Botones */
+.confirm-button {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 35px;
+    -fx-background-radius: 8;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #1E6FD8;
+}
+
+.confirm-button:pressed {
+    -fx-background-color: #155FC0;
+}
+
+/* Mensaje */
+.message {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2F80ED;
+    -fx-font-style: italic;
+}

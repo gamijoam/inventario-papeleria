@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Button?>
 
-<VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.papeleria.inventariopapeleria.controller.ActualizarProductoController" stylesheets="@styles.css">
-    <TableView fx:id="productosTable" onMouseClicked="#seleccionarProducto">
+<VBox spacing="10"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.papeleria.inventariopapeleria.controller.ActualizarProductoController"
+      stylesheets="styleActualizarProducto.css"
+      style="-fx-padding: 15; -fx-background-color: #F3F6F9; -fx-max-width: 900; -fx-max-height: 700;">
+
+    <TableView fx:id="productosTable"
+               onMouseClicked="#seleccionarProducto"
+               styleClass="modern-table">
         <columns>
             <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="100"/>
-            <TableColumn fx:id="codigoColumn" text="Código" prefWidth="80"/>
-            <TableColumn fx:id="precioVentaColumn" text="Precio Venta" prefWidth="100"/>
-            <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="80"/>
-            <TableColumn fx:id="categoriaColumn" text="Categoría" prefWidth="100"/>
-            <TableColumn fx:id="marcaColumn" text="Marca" prefWidth="100"/>
+            <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="90"/>
+            <TableColumn fx:id="codigoColumn" text="Código" prefWidth="70"/>
+            <TableColumn fx:id="precioVentaColumn" text="Precio Venta" prefWidth="90"/>
+            <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="70"/>
+            <TableColumn fx:id="categoriaColumn" text="Categoría" prefWidth="90"/>
+            <TableColumn fx:id="marcaColumn" text="Marca" prefWidth="90"/>
         </columns>
     </TableView>
-    <TextField fx:id="nombreField" promptText="Nombre"/>
-    <TextField fx:id="descripcionField" promptText="Descripción"/>
-    <TextField fx:id="codigoField" promptText="Código Único"/>
-    <TextField fx:id="precioVentaField" promptText="Precio Venta"/>
-    <TextField fx:id="precioCostoField" promptText="Precio Costo"/>
-    <TextField fx:id="categoriaField" promptText="Categoría"/>
-    <TextField fx:id="marcaField" promptText="Marca"/>
-    <TextField fx:id="proveedorField" promptText="Proveedor"/>
-    <TextField fx:id="cantidadField" promptText="Cantidad"/>
-    <Button text="Actualizar" onAction="#actualizarProducto" styleClass="button"/>
+
+    <TextField fx:id="nombreField" promptText="Nombre" styleClass="input-field"/>
+    <TextField fx:id="descripcionField" promptText="Descripción" styleClass="input-field"/>
+    <TextField fx:id="codigoField" promptText="Código Único" styleClass="input-field"/>
+    <TextField fx:id="precioVentaField" promptText="Precio Venta" styleClass="input-field"/>
+    <TextField fx:id="precioCostoField" promptText="Precio Costo" styleClass="input-field"/>
+    <TextField fx:id="categoriaField" promptText="Categoría" styleClass="input-field"/>
+    <TextField fx:id="marcaField" promptText="Marca" styleClass="input-field"/>
+    <TextField fx:id="proveedorField" promptText="Proveedor" styleClass="input-field"/>
+    <TextField fx:id="cantidadField" promptText="Cantidad" styleClass="input-field"/>
+
+    <Button text="Actualizar"
+            onAction="#actualizarProducto"
+            styleClass="confirm-button"/>
 </VBox>

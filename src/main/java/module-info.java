@@ -1,6 +1,4 @@
 module com.papeleria.inventariopapeleria {
-    requires javafx.controls;
-    requires javafx.fxml;
     requires javafx.web;
 
     requires org.controlsfx.controls;
@@ -15,6 +13,7 @@ module com.papeleria.inventariopapeleria {
     requires org.hibernate.orm.core;
     requires java.sql;
     requires java.naming;
+    requires MaterialFX;
 
     // Abre paquetes a JavaFX y Hibernate para reflexión
     opens com.papeleria.inventariopapeleria to javafx.fxml, org.hibernate.orm.core;

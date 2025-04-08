@@ -5,6 +5,7 @@ import com.papeleria.inventariopapeleria.dao.VariacionColorDAO;
 import com.papeleria.inventariopapeleria.model.Producto;
 import com.papeleria.inventariopapeleria.model.VariacionColor;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ListView;
 
@@ -35,37 +36,69 @@ public class AgregarProductoController {
 
     @FXML
     private void guardarProducto() {
-        if (coloresList.getItems().isEmpty()) {
-            // Si no hay colores, guardar un solo producto sin variaciones
-            Producto producto = new Producto();
-            producto.setNombre(nombreField.getText());
-            producto.setDescripcion(descripcionField.getText());
-            producto.setCodigoUnico(generarCodigoBusqueda(nombreField.getText()));
-            producto.setPrecioVenta(Double.parseDouble(precioVentaField.getText()));
-            producto.setPrecioCosto(Double.parseDouble(precioCostoField.getText()));
-            producto.setCategoria(categoriaField.getText());
-            producto.setMarca(marcaField.getText());
-            producto.setProveedor(proveedorField.getText());
-            producto.setCantidad(Integer.parseInt(cantidadField.getText()));
-            productoDAO.save(producto);
-        } else {
-            // Si hay colores, crear un producto por cada color
-            for (String color : coloresList.getItems()) {
-                Producto producto = new Producto();
-                producto.setNombre(nombreField.getText() + "-" + color);
-                producto.setDescripcion(descripcionField.getText());
-                producto.setCodigoUnico(generarCodigoBusqueda(nombreField.getText()) + "-" + color);
-                producto.setPrecioVenta(Double.parseDouble(precioVentaField.getText()));
-                producto.setPrecioCosto(Double.parseDouble(precioCostoField.getText()));
-                producto.setCategoria(categoriaField.getText());
-                producto.setMarca(marcaField.getText());
-                producto.setProveedor(proveedorField.getText());
-                producto.setCantidad(Integer.parseInt(cantidadField.getText()));
+        double numero1;
+        double numero2;
+        double numero3;
 
-                productoDAO.save(producto);
+        try{
+            numero1 = Double.parseDouble(precioVentaField.getText());
+            try{
+                numero2 = Double.parseDouble(precioCostoField.getText());
+                try {
+                    numero3 = Double.parseDouble(cantidadField.getText());
+                    if (coloresList.getItems().isEmpty()) {
+                        // Si no hay colores, guardar un solo producto sin variaciones
+                        Producto producto = new Producto();
+                        producto.setNombre(nombreField.getText());
+                        producto.setDescripcion(descripcionField.getText());
+                        producto.setCodigoUnico(generarCodigoBusqueda(nombreField.getText()));
+                        producto.setPrecioVenta(Double.parseDouble(precioVentaField.getText()));
+                        producto.setPrecioCosto(Double.parseDouble(precioCostoField.getText()));
+                        producto.setCategoria(categoriaField.getText());
+                        producto.setMarca(marcaField.getText());
+                        producto.setProveedor(proveedorField.getText());
+                        producto.setCantidad(Integer.parseInt(cantidadField.getText()));
+                        productoDAO.save(producto);
+                    } else {
+                        // Si hay colores, crear un producto por cada color
+                        for (String color : coloresList.getItems()) {
+                            Producto producto = new Producto();
+                            producto.setNombre(nombreField.getText() + "-" + color);
+                            producto.setDescripcion(descripcionField.getText());
+                            producto.setCodigoUnico(generarCodigoBusqueda(nombreField.getText()) + "-" + color);
+                            producto.setPrecioVenta(Double.parseDouble(precioVentaField.getText()));
+                            producto.setPrecioCosto(Double.parseDouble(precioCostoField.getText()));
+                            producto.setCategoria(categoriaField.getText());
+                            producto.setMarca(marcaField.getText());
+                            producto.setProveedor(proveedorField.getText());
+                            producto.setCantidad(Integer.parseInt(cantidadField.getText()));
+
+                            productoDAO.save(producto);
+                        }
+                    }
+                    nombreField.getScene().getWindow().hide();
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("ERROR");
+                    alert.setContentText("ESTA INGRESANDO UNA LETA EN UN DATO CAMPO NUMERICO");
+                    alert.setHeaderText(null);
+                    alert.showAndWait();
+                }
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("ERROR");
+                alert.setContentText("ESTA INGRESANDO UNA LETA EN UN DATO CAMPO NUMERICO");
+                alert.setHeaderText(null);
+                alert.showAndWait();
             }
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setContentText("ESTA INGRESANDO UNA LETA EN UN DATO CAMPO NUMERICO");
+            alert.setHeaderText(null);
+            alert.showAndWait();
         }
-        nombreField.getScene().getWindow().hide();
+
     }
 
     private String generarCodigoBusqueda(String texto) {

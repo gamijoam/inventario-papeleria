@@ -32,6 +32,11 @@ public class MainController {
         abrirVentana("/inventario.fxml", "Inventario");
     }
 
+    @FXML
+    private void abrirConfiguracionDolar() throws IOException {
+        abrirVentana("/precioDolar.fxml","Configuracion");
+    }
+
     private void abrirVentana(String fxml, String titulo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Stage stage = new Stage();

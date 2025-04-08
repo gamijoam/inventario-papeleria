@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.Button?>
 
-<VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.papeleria.inventariopapeleria.controller.EliminarProductoController" stylesheets="@styles.css">
-    <TableView fx:id="productosTable">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" style="-fx-padding: 30; -fx-background-color: #F3F6F9;" stylesheets="styleEliminarProducto.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papeleria.inventariopapeleria.controller.EliminarProductoController">
+
+    <TableView fx:id="productosTable" prefHeight="400.0" prefWidth="699.0" styleClass="modern-table">
         <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="100"/>
-            <TableColumn fx:id="codigoColumn" text="Código" prefWidth="80"/>
-            <TableColumn fx:id="precioVentaColumn" text="Precio Venta" prefWidth="100"/>
-            <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="80"/>
-            <TableColumn fx:id="categoriaColumn" text="Categoría" prefWidth="100"/>
-            <TableColumn fx:id="marcaColumn" text="Marca" prefWidth="100"/>
+            <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
+            <TableColumn fx:id="nombreColumn" prefWidth="100" text="Nombre" />
+            <TableColumn fx:id="codigoColumn" prefWidth="80" text="Código" />
+            <TableColumn fx:id="precioVentaColumn" prefWidth="100" text="Precio Venta" />
+            <TableColumn fx:id="cantidadColumn" prefWidth="80" text="Cantidad" />
+            <TableColumn fx:id="categoriaColumn" prefWidth="100" text="Categoría" />
+            <TableColumn fx:id="marcaColumn" prefWidth="100" text="Marca" />
         </columns>
     </TableView>
-    <Button text="Eliminar" onAction="#eliminarProducto" styleClass="button"/>
+
+    <Button onAction="#eliminarProducto" styleClass="confirm-button" text="Eliminar" />
 </VBox>

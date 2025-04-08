@@ -1,3 +1,4 @@
+
 package com.papeleria.inventariopapeleria.model;
 
 import jakarta.persistence.*;

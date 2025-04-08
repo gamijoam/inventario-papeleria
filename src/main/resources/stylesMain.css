@@ -1,0 +1,34 @@
+/* Estilo global */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #F5F5F5;
+}
+
+/* Contenedor principal */
+.vbox-container {
+    -fx-background-color: #F5F5F5;
+    -fx-padding: 40;
+    -fx-spacing: 20;
+}
+
+/* Botones del menú */
+.menu-button {
+    -fx-background-color: #2F80ED; /* Azul primario */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 50px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+}
+
+.menu-button:hover {
+    -fx-background-color: #1E6FD8; /* Azul más oscuro al pasar el mouse */
+}
+
+.menu-button:pressed {
+    -fx-background-color: #155FC0; /* Azul aún más oscuro al presionar */
+}

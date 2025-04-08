@@ -1,0 +1,63 @@
+.root {
+    -fx-background-color: #F3F6F9;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Campos de texto */
+.input-field {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-background-color: white;
+    -fx-border-color: #CCC;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.03), 1, 0, 0, 1);
+}
+
+/* Botón secundario para agregar color */
+.secondary-button {
+    -fx-background-color: #8C8C8C;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 10;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #757575;
+}
+
+.secondary-button:pressed {
+    -fx-background-color: #5D5D5D;
+}
+
+/* ListView de colores */
+.list-view {
+    -fx-background-color: white;
+    -fx-border-radius: 8;
+    -fx-border-color: #CCC;
+    -fx-padding: 8;
+}
+
+/* Botón de confirmación */
+.confirm-button {
+    -fx-background-color: #2F80ED;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 10;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #1E6FD8;
+}
+
+.confirm-button:pressed {
+    -fx-background-color: #155FC0;
+}

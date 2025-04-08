@@ -1,0 +1,67 @@
+/* Estilo global */
+.root {
+    -fx-background-color: #F3F6F9;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Tabla */
+.modern-table {
+    -fx-background-color: white;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.05), 5, 0.0, 0, 2);
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #FF5959;
+    -fx-border-radius: 10 10 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-size: 35;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+   /* Fondo blanco por defecto */
+    -fx-border-color: #E0E0E0;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Color de texto gris oscuro */
+}
+
+/* Campos de texto */
+.input-field {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-background-color: white;
+    -fx-border-color: #CCC;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.03), 1, 0, 0, 1);
+}
+
+/* Botón */
+.confirm-button {
+    -fx-background-color: #FF5959;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 10;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #FF3B3B;
+}
+
+.confirm-button:pressed {
+    -fx-background-color: #D12B2B;
+}
