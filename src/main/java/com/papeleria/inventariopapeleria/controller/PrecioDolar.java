@@ -4,6 +4,7 @@ import com.papeleria.inventariopapeleria.dao.PrecioDolarDAO;
 import com.papeleria.inventariopapeleria.model.PrecioDolarr;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -26,7 +27,7 @@ public class PrecioDolar {
 
 
     private final PrecioDolarDAO precioDolarDAO = new PrecioDolarDAO();
-
+    LocalDate fechaLocal = LocalDate.now();
     @FXML
     public void initialize() {
         // Inicialización si es necesario
@@ -47,7 +48,7 @@ public class PrecioDolar {
             double precioDouble = Double.parseDouble(nuevoPrecio);
 
             // Validar que no se haya registrado un precio para el día actual
-            LocalDate fechaLocal = LocalDate.now();
+
             if (precioDolarDAO.existePrecioParaFecha(fechaLocal)) {
                 mostrarAlertaError("Registro Duplicado", "Ya se ha registrado un precio para hoy.");
                 return;
@@ -70,7 +71,15 @@ public class PrecioDolar {
             mostrarAlertaError("Valor Inválido", "Por favor, ingresa un número válido.");
         }
     }
-
+    public void eliminarPrecio() {
+        if(precioDolarDAO.existePrecioParaFecha(fechaLocal)){
+            PrecioDolarr precioDolarr = precioDolarDAO.obtenerIdPorFecha(java.sql.Date.valueOf(fechaLocal));
+            precioDolarDAO.delete(precioDolarr);
+            mostrarAlertaInformacion("Exito","El precio del dolar ha sido eliminado correctamente");
+        }else {
+            mostrarAlertaError("Error","No hay precio por eliminar");
+        }
+    }
     private void mostrarAlertaError(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titulo);
@@ -86,5 +95,6 @@ public class PrecioDolar {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
 
 }

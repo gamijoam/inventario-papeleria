@@ -54,6 +54,7 @@
                 <HBox alignment="CENTER" spacing="15">
                     <children>
                         <MFXButton text="Actualizar precio" styleClass="btn-guardar" onAction="#actualizarPrecio"/>
+                        <MFXButton text="Eliminar precio" styleClass="btn-guardar" onAction="#eliminarPrecio"/>
                     </children>
                     <padding>
                         <Insets top="20" />

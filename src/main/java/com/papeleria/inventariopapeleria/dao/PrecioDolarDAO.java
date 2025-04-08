@@ -1,5 +1,6 @@
 package com.papeleria.inventariopapeleria.dao;
 
+import com.papeleria.inventariopapeleria.controller.PrecioDolar;
 import com.papeleria.inventariopapeleria.model.PrecioDolarr;
 import com.papeleria.inventariopapeleria.util.HibernateUtil;
 import org.hibernate.Session;
@@ -7,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class PrecioDolarDAO {
@@ -46,7 +48,17 @@ public class PrecioDolarDAO {
             e.printStackTrace();
         }
     }
-
+    public PrecioDolarr obtenerIdPorFecha(Date fecha) {
+        try(Session session2 = HibernateUtil.getSessionFactory().openSession()){
+                String hql = "FROM PrecioDolarr pd WHERE pd.fechaDolar = :fecha";
+                Query<PrecioDolarr> query = session2.createQuery(hql, PrecioDolarr.class);
+                query.setParameter("fecha", fecha); // Asignar el parámetro de fecha
+                return query.uniqueResult(); // Devuelve el objeto PrecioDolar si hay un resultado único
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     /**
      * Verifica si ya existe un registro de precio del dólar para la fecha dada.
      *
