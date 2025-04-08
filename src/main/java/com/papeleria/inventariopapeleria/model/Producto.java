@@ -26,6 +26,16 @@ public class Producto {
     // Constructores, getters y setters
     public Producto() {}
 
+    public ProductoObservable toProductoObservable() {
+        ProductoObservable observable = new ProductoObservable();
+        observable.setId(this.getId());
+        observable.setNombre(this.getNombre());
+        observable.setCodigoUnico(this.getCodigoUnico());
+        observable.setPrecioVenta(this.getPrecioVenta());
+        observable.setCantidad(this.getCantidad());
+        return observable;
+    }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getNombre() { return nombre; }

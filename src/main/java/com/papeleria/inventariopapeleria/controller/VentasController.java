@@ -4,10 +4,13 @@ import com.papeleria.inventariopapeleria.dao.PrecioDolarDAO;
 import com.papeleria.inventariopapeleria.dao.ProductoDAO;
 import com.papeleria.inventariopapeleria.model.PrecioDolarr;
 import com.papeleria.inventariopapeleria.model.Producto;
+import com.papeleria.inventariopapeleria.model.ProductoObservable;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,13 +19,13 @@ import java.util.Optional;
 public class VentasController {
     @FXML private TextField buscarField;
     @FXML private ListView<String> sugerenciasList;
-    @FXML private TableView<Producto> ventasTable;
-    @FXML private TableColumn<Producto, Long> idColumn;
-    @FXML private TableColumn<Producto, String> nombreColumn;
-    @FXML private TableColumn<Producto, String> codigoColumn;
-    @FXML private TableColumn<Producto, Double> precioVentaColumn;
-    @FXML private TableColumn<Producto, Integer> cantidadColumn;
-    @FXML private TableColumn<Producto, Double> subtotalColumn;
+    @FXML private TableView<ProductoObservable> ventasTable;
+    @FXML private TableColumn<ProductoObservable, Long> idColumn;
+    @FXML private TableColumn<ProductoObservable, String> nombreColumn;
+    @FXML private TableColumn<ProductoObservable, String> codigoColumn;
+    @FXML private TableColumn<ProductoObservable, Double> precioVentaColumn;
+    @FXML private TableColumn<ProductoObservable, Integer> cantidadColumn;
+    @FXML private TableColumn<ProductoObservable, Double> subtotalColumn;
     @FXML private Label precioDolarLabel;
     @FXML private Label totalLabel;
 
@@ -32,37 +35,62 @@ public class VentasController {
 
     @FXML
     public void initialize() {
+        ventasTable.setEditable(true);
         precioDolar = obtenerPrecioDolar();
         precioDolarLabel.setText(String.format("%.2f Bs", precioDolar));
 
         // Configurar las columnas de la tabla
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        codigoColumn.setCellValueFactory(new PropertyValueFactory<>("codigoUnico"));
-        precioVentaColumn.setCellValueFactory(new PropertyValueFactory<>("precioVenta"));
-        cantidadColumn.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+        nombreColumn.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
+        codigoColumn.setCellValueFactory(cellData -> cellData.getValue().codigoUnicoProperty());
+        precioVentaColumn.setCellValueFactory(cellData -> cellData.getValue().precioVentaProperty().asObject());
 
-        // Calcular el subtotal dinámicamente
-        subtotalColumn.setCellValueFactory(cellData -> {
-            Producto producto = cellData.getValue();
-            double subtotal = (producto.getPrecioVenta() * precioDolar) * producto.getCantidad();
-            return javafx.beans.binding.Bindings.createObjectBinding(() -> subtotal);
+        // Cantidad (editable)
+        cantidadColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        cantidadColumn.setOnEditCommit(event -> {
+            ProductoObservable producto = event.getRowValue();
+            try {
+                int nuevaCantidad = Integer.parseInt(String.valueOf(event.getNewValue()));
+                if (nuevaCantidad > 0) {
+                    producto.setCantidad(nuevaCantidad); // Actualizar la propiedad observable
+                } else {
+                    throw new NumberFormatException("La cantidad debe ser mayor a cero.");
+                }
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Entrada Inválida");
+                alert.setContentText("Por favor, ingrese un número válido mayor a cero.");
+                alert.showAndWait();
+            }
+
+            // Actualizar el total manualmente
+            actualizarTotal();
         });
 
-        // Actualizar el total general cuando cambie la tabla
-        ventasTable.getItems().addListener((javafx.collections.ListChangeListener<Producto>) change -> actualizarTotal());
-    }
+        // Configurar la columna de subtotal
+        subtotalColumn.setCellValueFactory(cellData -> {
+            ProductoObservable producto = cellData.getValue();
+            return Bindings.createDoubleBinding(() ->
+                            producto.getCantidad() * producto.getPrecioVenta() * precioDolar,
+                    producto.cantidadProperty(),
+                    producto.precioVentaProperty()
+            ).asObject();
+        });
 
-    @FXML
-    private void buscarProducto() {
-        String texto = buscarField.getText();
-        sugerenciasList.getItems().clear();
-        if (!texto.isEmpty()) {
-            productosSugeridos = productoDAO.searchByName(texto);
-            for (Producto producto : productosSugeridos) {
-                sugerenciasList.getItems().add(producto.getNombre());
+// Formatear el subtotal para mostrar dos decimales en la celda
+        subtotalColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Double item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(String.format("%.2f Bs", item)); // Limitar a dos decimales y agregar "Bs"
+                }
             }
-        }
+        });
+        actualizarTotal();
     }
 
     @FXML
@@ -72,22 +100,19 @@ public class VentasController {
             if (index >= 0 && index < productosSugeridos.size()) {
                 Producto seleccionado = productosSugeridos.get(index);
 
-                // Verificar si el producto ya está en la tabla
-                Optional<Producto> existente = ventasTable.getItems().stream()
-                        .filter(p -> p.getId().equals(seleccionado.getId())) // Compara por ID
+                Optional<ProductoObservable> existente = ventasTable.getItems().stream()
+                        .filter(p -> p.getId() == seleccionado.getId())
                         .findFirst();
 
                 if (existente.isPresent()) {
-                    // Incrementar la cantidad si ya existe
-                    Producto productoExistente = existente.get();
-                    productoExistente.setCantidad(productoExistente.getCantidad() + 1);
+                    return; // No hacer nada si el producto ya existe
                 } else {
-                    // Agregar el producto a la tabla si es nuevo
-                    seleccionado.setCantidad(1); // Inicializar la cantidad en 1
-                    ventasTable.getItems().add(seleccionado);
+                    ProductoObservable productoObservable = seleccionado.toProductoObservable();
+                    productoObservable.setCantidad(1); // Inicializar la cantidad en 1
+                    ventasTable.getItems().add(productoObservable);
                 }
 
-                // Actualizar el total general
+                // Actualizar el total manualmente
                 actualizarTotal();
             }
         }
@@ -95,12 +120,17 @@ public class VentasController {
 
     @FXML
     private void confirmarVenta() {
-        for (Producto producto : ventasTable.getItems()) {
-            producto.setCantidad(producto.getCantidad() - 1); // Reducir la cantidad
-            productoDAO.update(producto);
+        for (ProductoObservable producto : ventasTable.getItems()) {
+            Producto productoEntity = producto.toProducto(); // Convertir a Producto
+            if (productoEntity.getCantidad() > 0) {
+                productoEntity.setCantidad(productoEntity.getCantidad() - 1); // Reducir la cantidad
+                productoDAO.update(productoEntity);
+            }
         }
         ventasTable.getItems().clear();
-        actualizarTotal(); // Reiniciar el total general
+
+        // Actualizar el total manualmente
+        actualizarTotal();
     }
 
     private double obtenerPrecioDolar() {
@@ -113,10 +143,22 @@ public class VentasController {
         return 0.0; // Valor predeterminado si no hay registros
     }
 
+    // Método para actualizar el total manualmente
     private void actualizarTotal() {
         double total = ventasTable.getItems().stream()
-                .mapToDouble(producto -> (producto.getPrecioVenta() * precioDolar) * producto.getCantidad())
+                .mapToDouble(producto -> producto.getCantidad() * producto.getPrecioVenta() * precioDolar)
                 .sum();
-        totalLabel.setText(String.format("%.2f Bs", total));
+        totalLabel.setText(String.format("%.2f Bs", total)); // Actualizar el texto del total
+    }
+    @FXML
+    private void buscarProducto() {
+        String texto = buscarField.getText();
+        sugerenciasList.getItems().clear();
+        if (!texto.isEmpty()) {
+            productosSugeridos = productoDAO.searchByName(texto);
+            for (Producto producto : productosSugeridos) {
+                sugerenciasList.getItems().add(producto.getNombre());
+            }
+        }
     }
 }

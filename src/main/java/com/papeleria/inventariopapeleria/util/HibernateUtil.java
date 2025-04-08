@@ -1,6 +1,7 @@
 package com.papeleria.inventariopapeleria.util;
 
 import com.papeleria.inventariopapeleria.model.PrecioDolarr;
+import com.papeleria.inventariopapeleria.model.ProductoObservable;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -19,7 +20,8 @@ public class HibernateUtil {
                     .setProperty("hibernate.hbm2ddl.auto", "update")
                     .setProperty("show_sql", "true")
                     .addAnnotatedClass(com.papeleria.inventariopapeleria.model.Producto.class)
-                    .addAnnotatedClass(PrecioDolarr.class);
+                    .addAnnotatedClass(PrecioDolarr.class)
+                    .addAnnotatedClass(ProductoObservable.class);
 
             sessionFactory = configuration.buildSessionFactory();
             System.out.println("Hibernate configurado correctamente en HibernateUtil.");
