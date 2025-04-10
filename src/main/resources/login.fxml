@@ -4,17 +4,38 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.papeleria.inventariopapeleria.controller.LoginController" stylesheets="styleLogin.css">
-    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-        <children>
-            <Label text="Iniciar Sesión" style="-fx-font-size: 28px; -fx-text-fill: #333333; -fx-font-weight: bold;"/>
-            <TextField fx:id="usernameField" promptText="Usuario" />
-            <PasswordField fx:id="passwordField" promptText="Contraseña" />
-            <Button text="Entrar" fx:id="loginButton" styleClass="login-button"/>
-        </children>
-        <padding>
-            <Insets top="60" right="40" bottom="60" left="40"/>
-        </padding>
-    </VBox>
+    <!-- Fondo principal -->
+    <AnchorPane style="-fx-background-color: #E5E5E5;" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <!-- Contenedor de la tarjeta -->
+        <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+              style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-padding: 40; -fx-background-radius: 15;">
+            <!-- Título -->
+            <Label text="Iniciar Sesión" style="-fx-font-size: 32px; -fx-text-fill: #333333; -fx-font-weight: bold;" />
+
+            <!-- Campo de usuario -->
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #F9F9F9; -fx-padding: 10 15; -fx-background-radius: 8;">
+                <ImageView fitWidth="20" fitHeight="20">
+                    <Image url="@icons/user.png" />
+                </ImageView>
+                <TextField fx:id="usernameField" promptText="Usuario" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 16px;" />
+            </HBox>
+
+            <!-- Campo de contraseña -->
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #F9F9F9; -fx-padding: 10 15; -fx-background-radius: 8;">
+                <ImageView fitWidth="20" fitHeight="20">
+                    <Image url="@icons/lock.png" />
+                </ImageView>
+                <PasswordField fx:id="passwordField" promptText="Contraseña" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 16px;" />
+            </HBox>
+
+            <!-- Mensaje de error (opcional) -->
+            <Label fx:id="errorLabel" text="" style="-fx-text-fill: red; -fx-font-size: 14px;" visible="false" />
+
+            <!-- Botón de inicio de sesión -->
+            <Button text="Entrar" fx:id="loginButton" styleClass="login-button" style="-fx-pref-width: 150; -fx-font-size: 16px;" />
+        </VBox>
+    </AnchorPane>
 </AnchorPane>

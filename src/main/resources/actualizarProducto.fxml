@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 
-<VBox spacing="10"
+<HBox spacing="20"
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.papeleria.inventariopapeleria.controller.ActualizarProductoController"
       stylesheets="styleActualizarProducto.css"
       style="-fx-padding: 15; -fx-background-color: #F3F6F9; -fx-max-width: 900; -fx-max-height: 700;">
 
-    <TableView fx:id="productosTable"
-               onMouseClicked="#seleccionarProducto"
-               styleClass="modern-table">
-        <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="90"/>
-            <TableColumn fx:id="codigoColumn" text="Código" prefWidth="70"/>
-            <TableColumn fx:id="precioVentaColumn" text="Precio Venta" prefWidth="90"/>
-            <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="70"/>
-            <TableColumn fx:id="categoriaColumn" text="Categoría" prefWidth="90"/>
-            <TableColumn fx:id="marcaColumn" text="Marca" prefWidth="90"/>
-        </columns>
-    </TableView>
+    <!-- Columna izquierda: Tabla de productos -->
+    <VBox spacing="10" style="-fx-min-width: 400;">
+        <TableView fx:id="productosTable"
+                   onMouseClicked="#seleccionarProducto"
+                   styleClass="modern-table">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="90"/>
+                <TableColumn fx:id="codigoColumn" text="Código" prefWidth="70"/>
+                <TableColumn fx:id="precioVentaColumn" text="Precio Venta" prefWidth="90"/>
+                <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="70"/>
+                <TableColumn fx:id="categoriaColumn" text="Categoría" prefWidth="90"/>
+                <TableColumn fx:id="marcaColumn" text="Marca" prefWidth="90"/>
+            </columns>
+        </TableView>
+    </VBox>
 
-    <TextField fx:id="nombreField" promptText="Nombre" styleClass="input-field"/>
-    <TextField fx:id="descripcionField" promptText="Descripción" styleClass="input-field"/>
-    <TextField fx:id="codigoField" promptText="Código Único" styleClass="input-field"/>
-    <TextField fx:id="precioVentaField" promptText="Precio Venta" styleClass="input-field"/>
-    <TextField fx:id="precioCostoField" promptText="Precio Costo" styleClass="input-field"/>
-    <TextField fx:id="categoriaField" promptText="Categoría" styleClass="input-field"/>
-    <TextField fx:id="marcaField" promptText="Marca" styleClass="input-field"/>
-    <TextField fx:id="proveedorField" promptText="Proveedor" styleClass="input-field"/>
-    <TextField fx:id="cantidadField" promptText="Cantidad" styleClass="input-field"/>
+    <!-- Columna derecha: Campos de actualización -->
+    <VBox spacing="10" alignment="CENTER_LEFT" style="-fx-min-width: 400;">
+        <TextField fx:id="nombreField" promptText="Nombre" styleClass="input-field"/>
+        <TextField fx:id="descripcionField" promptText="Descripción" styleClass="input-field"/>
+        <TextField fx:id="codigoField" promptText="Código Único" styleClass="input-field"/>
+        <TextField fx:id="precioVentaField" promptText="Precio Venta" styleClass="input-field"/>
+        <TextField fx:id="precioCostoField" promptText="Precio Costo" styleClass="input-field"/>
+        <TextField fx:id="categoriaField" promptText="Categoría" styleClass="input-field"/>
+        <TextField fx:id="marcaField" promptText="Marca" styleClass="input-field"/>
+        <TextField fx:id="proveedorField" promptText="Proveedor" styleClass="input-field"/>
+        <TextField fx:id="cantidadField" promptText="Cantidad" styleClass="input-field"/>
 
-    <Button text="Actualizar"
-            onAction="#actualizarProducto"
-            styleClass="confirm-button"/>
-</VBox>
+        <Button text="Actualizar"
+                onAction="#actualizarProducto"
+                styleClass="confirm-button"/>
+    </VBox>
+</HBox>

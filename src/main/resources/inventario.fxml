@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
 
 <VBox spacing="20" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.papeleria.inventariopapeleria.controller.InventarioController"
       stylesheets="stylesInventario.css"
-      style="-fx-padding: 30; -fx-background-color: #F5F5F5;">
+      style="-fx-padding: 20; -fx-background-color: #F5F5F5;">
 
-    <TableView fx:id="inventarioTable" styleClass="modern-table">
-        <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="120"/>
-            <TableColumn fx:id="codigoColumn" text="Código" prefWidth="100"/>
-            <TableColumn fx:id="precioVentaColumn" text="Precio Venta" prefWidth="120"/>
-            <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="100"/>
-            <TableColumn fx:id="categoriaColumn" text="Categoría" prefWidth="120"/>
-            <TableColumn fx:id="marcaColumn" text="Marca" prefWidth="120"/>
-            <TableColumn fx:id="proveedorColumn" text="Proveedor" prefWidth="150"/>
-        </columns>
-    </TableView>
+    <!-- Cuadrícula principal -->
+    <GridPane hgap="15" vgap="15" alignment="CENTER">
+        <!-- Tabla de inventario -->
+        <TableView fx:id="inventarioTable" styleClass="modern-table" prefHeight="350" prefWidth="750" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="120"/>
+                <TableColumn fx:id="codigoColumn" text="Código" prefWidth="100"/>
+                <TableColumn fx:id="precioVentaColumn" text="Precio Venta" prefWidth="120"/>
+                <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="100"/>
+                <TableColumn fx:id="categoriaColumn" text="Categoría" prefWidth="120"/>
+                <TableColumn fx:id="marcaColumn" text="Marca" prefWidth="120"/>
+                <TableColumn fx:id="proveedorColumn" text="Proveedor" prefWidth="150"/>
+            </columns>
+        </TableView>
+      </GridPane>
 </VBox>

@@ -7,42 +7,51 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.papeleria.inventariopapeleria.controller.VentasController"
       stylesheets="styleVentas.css"
-      style="-fx-padding: 30; -fx-background-color: #F3F6F9;">
+      style="-fx-padding: 20; -fx-background-color: #F3F6F9;">
 
-    <!-- Label para el precio del dólar -->
-    <HBox alignment="CENTER_RIGHT" spacing="10">
+    <!-- Barra superior: Precio del dólar -->
+    <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-padding: 10 0 10 0;">
         <Label text="Precio del Dólar:" styleClass="label-info" />
         <Label fx:id="precioDolarLabel" text="0.00 Bs" styleClass="precio-dolar" />
     </HBox>
 
-    <TextField fx:id="buscarField"
-               promptText="Buscar producto"
-               onKeyReleased="#buscarProducto"
-               styleClass="input-field"/>
+    <!-- Cuadrícula principal -->
+    <GridPane hgap="20" vgap="20" alignment="CENTER">
+        <!-- Columna izquierda: Buscador y sugerencias -->
+        <VBox spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="0">
+            <TextField fx:id="buscarField"
+                       promptText="Buscar producto"
+                       onKeyReleased="#buscarProducto"
+                       styleClass="input-field"/>
+            <ListView fx:id="sugerenciasList"
+                      prefHeight="100"
+                      onMouseClicked="#agregarProducto"
+                      styleClass="sugerencias-list"/>
+        </VBox>
 
-    <ListView fx:id="sugerenciasList"
-              prefHeight="100"
-              onMouseClicked="#agregarProducto"
-              styleClass="sugerencias-list"/>
+        <!-- Columna derecha: Tabla de ventas -->
+        <TableView fx:id="ventasTable" styleClass="modern-table" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="120"/>
+                <TableColumn fx:id="codigoColumn" text="Código" prefWidth="100"/>
+                <TableColumn fx:id="precioVentaColumn" text="Precio Venta ($)" prefWidth="120"/>
+                <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="100"/>
+                <TableColumn fx:id="subtotalColumn" text="Subtotal (Bs)" prefWidth="120"/>
+            </columns>
+        </TableView>
 
-    <TableView fx:id="ventasTable" styleClass="modern-table">
-        <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="120"/>
-            <TableColumn fx:id="codigoColumn" text="Código" prefWidth="100"/>
-            <TableColumn fx:id="precioVentaColumn" text="Precio Venta ($)" prefWidth="120"/>
-            <TableColumn fx:id="cantidadColumn" text="Cantidad" prefWidth="100"/>
-            <TableColumn fx:id="subtotalColumn" text="Subtotal (Bs)" prefWidth="120"/>
-        </columns>
-    </TableView>
+        <!-- Total general -->
+        <HBox alignment="CENTER_RIGHT" spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <Label text="Total:" styleClass="label-info" />
+            <Label fx:id="totalLabel" text="0.00 Bs" styleClass="total-label" />
+        </HBox>
 
-    <!-- Label para el total general -->
-    <HBox alignment="CENTER_RIGHT" spacing="10">
-        <Label text="Total:" styleClass="label-info" />
-        <Label fx:id="totalLabel" text="0.00 Bs" styleClass="total-label" />
-    </HBox>
-
-    <Button text="Confirmar Venta"
-            onAction="#confirmarVenta"
-            styleClass="confirm-button"/>
+        <!-- Botón de confirmación -->
+        <Button text="Confirmar Venta"
+                onAction="#confirmarVenta"
+                styleClass="confirm-button"
+                GridPane.rowIndex="2" GridPane.columnIndex="1"
+                GridPane.halignment="RIGHT"/>
+    </GridPane>
 </VBox>

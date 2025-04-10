@@ -3,22 +3,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="15" style="-fx-padding: 30; -fx-background-color: #F3F6F9;" stylesheets="styleAgregarProducto.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papeleria.inventariopapeleria.controller.AgregarProductoController">
+<VBox alignment="CENTER" spacing="20" style="-fx-padding: 20; -fx-background-color: #F3F6F9;" stylesheets="styleAgregarProducto.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papeleria.inventariopapeleria.controller.AgregarProductoController">
 
-    <TextField fx:id="nombreField" promptText="Nombre del producto" styleClass="input-field" />
-    <TextField fx:id="descripcionField" promptText="Descripción" styleClass="input-field" />
-    <TextField fx:id="codigoField" disable="true" promptText="Código Único" styleClass="input-field" />
-    <TextField fx:id="precioVentaField" promptText="Precio Venta" styleClass="input-field" />
-    <TextField fx:id="precioCostoField" promptText="Precio Costo" styleClass="input-field" />
-    <TextField fx:id="categoriaField" promptText="Categoría" styleClass="input-field" />
-    <TextField fx:id="marcaField" promptText="Marca" styleClass="input-field" />
-    <TextField fx:id="proveedorField" promptText="Proveedor" styleClass="input-field" />
-    <TextField fx:id="cantidadField" promptText="Cantidad" styleClass="input-field" />
-    <TextField fx:id="colorField" promptText="Color (opcional)" styleClass="input-field" />
+    <!-- Cuadrícula para organizar los campos -->
+    <GridPane hgap="15" vgap="15" alignment="CENTER">
+        <!-- Primera fila -->
+        <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+        <TextField fx:id="nombreField" promptText="Nombre del producto" styleClass="input-field" GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
-    <Button onAction="#agregarColor" styleClass="secondary-button" text="Agregar Color" />
+        <Label text="Descripción:" GridPane.rowIndex="0" GridPane.columnIndex="2" style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+        <TextField fx:id="descripcionField" promptText="Descripción" styleClass="input-field" GridPane.rowIndex="0" GridPane.columnIndex="3" />
 
-    <ListView fx:id="coloresList" prefHeight="100" styleClass="list-view" />
+        <!-- Segunda fila -->
+        <Label text="Código:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+        <TextField fx:id="codigoField" disable="true" promptText="Código Único" styleClass="input-field" GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
+        <Label text="Precio Venta:" GridPane.rowIndex="1" GridPane.columnIndex="2" style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+        <TextField fx:id="precioVentaField" promptText="Precio Venta" styleClass="input-field" GridPane.rowIndex="1" GridPane.columnIndex="3" />
+
+        <!-- Tercera fila -->
+        <Label text="Precio Costo:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+        <TextField fx:id="precioCostoField" promptText="Precio Costo" styleClass="input-field" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+        <Label text="Categoría:" GridPane.rowIndex="2" GridPane.columnIndex="2" style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+        <TextField fx:id="categoriaField" promptText="Categoría" styleClass="input-field" GridPane.rowIndex="2" GridPane.columnIndex="3" />
+
+        <!-- Cuarta fila -->
+        <Label text="Marca:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+        <TextField fx:id="marcaField" promptText="Marca" styleClass="input-field" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+        <Label text="Proveedor:" GridPane.rowIndex="3" GridPane.columnIndex="2" style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+        <TextField fx:id="proveedorField" promptText="Proveedor" styleClass="input-field" GridPane.rowIndex="3" GridPane.columnIndex="3" />
+
+        <!-- Quinta fila -->
+        <Label text="Cantidad:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+        <TextField fx:id="cantidadField" promptText="Cantidad" styleClass="input-field" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+        <Label text="Color (opcional):" GridPane.rowIndex="4" GridPane.columnIndex="2" style="-fx-font-size: 14px; -fx-text-fill: #333;" />
+        <HBox spacing="10" alignment="CENTER_LEFT" GridPane.rowIndex="4" GridPane.columnIndex="3">
+            <TextField fx:id="colorField" promptText="Color" styleClass="input-field" />
+            <Button onAction="#agregarColor" styleClass="secondary-button" text="Agregar" />
+        </HBox>
+    </GridPane>
+
+    <!-- Lista de colores -->
+    <ListView fx:id="coloresList" prefHeight="80" styleClass="list-view" />
+
+    <!-- Botón de confirmación -->
     <Button onAction="#guardarProducto" styleClass="confirm-button" text="Guardar Producto" />
 </VBox>

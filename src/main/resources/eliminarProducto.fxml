@@ -3,19 +3,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="15" style="-fx-padding: 30; -fx-background-color: #F3F6F9;" stylesheets="styleEliminarProducto.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papeleria.inventariopapeleria.controller.EliminarProductoController">
+<VBox spacing="20" style="-fx-padding: 20; -fx-background-color: #F3F6F9;" stylesheets="styleEliminarProducto.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papeleria.inventariopapeleria.controller.EliminarProductoController">
 
-    <TableView fx:id="productosTable" prefHeight="400.0" prefWidth="699.0" styleClass="modern-table">
-        <columns>
-            <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
-            <TableColumn fx:id="nombreColumn" prefWidth="100" text="Nombre" />
-            <TableColumn fx:id="codigoColumn" prefWidth="80" text="Código" />
-            <TableColumn fx:id="precioVentaColumn" prefWidth="100" text="Precio Venta" />
-            <TableColumn fx:id="cantidadColumn" prefWidth="80" text="Cantidad" />
-            <TableColumn fx:id="categoriaColumn" prefWidth="100" text="Categoría" />
-            <TableColumn fx:id="marcaColumn" prefWidth="100" text="Marca" />
-        </columns>
-    </TableView>
+    <!-- Cuadrícula principal -->
+    <GridPane hgap="15" vgap="15" alignment="CENTER">
+        <!-- Tabla de productos -->
+        <TableView fx:id="productosTable" prefHeight="300" prefWidth="650" styleClass="modern-table" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
+                <TableColumn fx:id="nombreColumn" prefWidth="120" text="Nombre" />
+                <TableColumn fx:id="codigoColumn" prefWidth="80" text="Código" />
+                <TableColumn fx:id="precioVentaColumn" prefWidth="100" text="Precio Venta" />
+                <TableColumn fx:id="cantidadColumn" prefWidth="80" text="Cantidad" />
+                <TableColumn fx:id="categoriaColumn" prefWidth="100" text="Categoría" />
+                <TableColumn fx:id="marcaColumn" prefWidth="100" text="Marca" />
+            </columns>
+        </TableView>
 
-    <Button onAction="#eliminarProducto" styleClass="confirm-button" text="Eliminar" />
+        <!-- Botón de eliminación -->
+        <Button onAction="#eliminarProducto" styleClass="confirm-button" text="Eliminar Producto" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.halignment="RIGHT" />
+
+    </GridPane>
 </VBox>

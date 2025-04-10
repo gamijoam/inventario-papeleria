@@ -1,20 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import io.github.palexdev.materialfx.controls.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
 
+<?import javafx.scene.control.Label?>
 <VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.papeleria.inventariopapeleria.controller.MainController"
-      style="-fx-background-color: #F5F5F5; -fx-padding: 40;" stylesheets="@stylesMain.css">
+      style="-fx-background-color: #F5F5F5; -fx-padding: 30;" stylesheets="@stylesMain.css">
 
-    <MFXButton text="Agregar Producto" onAction="#abrirAgregarProducto" styleClass="menu-button" />
+    <!-- Título del menú -->
+    <Label text="Menú Principal" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" />
 
-    <MFXButton text="Eliminar Producto" onAction="#abrirEliminarProducto" styleClass="menu-button" />
+    <!-- Cuadrícula para organizar los botones -->
+    <GridPane hgap="20" vgap="20" alignment="CENTER">
+        <!-- Fila 1 -->
+        <MFXButton text="Agregar Producto" onAction="#abrirAgregarProducto" styleClass="menu-button" graphicTextGap="10" GridPane.rowIndex="0" GridPane.columnIndex="0">
+            <graphic>
+                <ImageView fitWidth="20" fitHeight="20">
+                    <Image url="@icons/add.png" />
+                </ImageView>
+            </graphic>
+        </MFXButton>
 
-    <MFXButton text="Actualizar Producto" onAction="#abrirActualizarProducto" styleClass="menu-button" />
+        <MFXButton text="Eliminar Producto" onAction="#abrirEliminarProducto" styleClass="menu-button" graphicTextGap="10" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <graphic>
+                <ImageView fitWidth="20" fitHeight="20">
+                    <Image url="@icons/delete.png" />
+                </ImageView>
+            </graphic>
+        </MFXButton>
 
-    <MFXButton text="Ventas" onAction="#abrirVentas" styleClass="menu-button" />
+        <!-- Fila 2 -->
+        <MFXButton text="Actualizar Producto" onAction="#abrirActualizarProducto" styleClass="menu-button" graphicTextGap="10" GridPane.rowIndex="1" GridPane.columnIndex="0">
+            <graphic>
+                <ImageView fitWidth="20" fitHeight="20">
+                    <Image url="@icons/update.png" />
+                </ImageView>
+            </graphic>
+        </MFXButton>
 
-    <MFXButton text="Inventario" onAction="#abrirInventario" styleClass="menu-button" />
+        <MFXButton text="Ventas" onAction="#abrirVentas" styleClass="menu-button" graphicTextGap="10" GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <graphic>
+                <ImageView fitWidth="20" fitHeight="20">
+                    <Image url="@icons/sales.png" />
+                </ImageView>
+            </graphic>
+        </MFXButton>
 
-    <MFXButton text="Configuracion Dolar" onAction="#abrirConfiguracionDolar" styleClass="menu-button" />
+        <!-- Fila 3 -->
+        <MFXButton text="Inventario" onAction="#abrirInventario" styleClass="menu-button" graphicTextGap="10" GridPane.rowIndex="2" GridPane.columnIndex="0">
+            <graphic>
+                <ImageView fitWidth="20" fitHeight="20">
+                    <Image url="@icons/inventory.png" />
+                </ImageView>
+            </graphic>
+        </MFXButton>
+
+        <MFXButton text="Configuración Dólar" onAction="#abrirConfiguracionDolar" styleClass="menu-button" graphicTextGap="10" GridPane.rowIndex="2" GridPane.columnIndex="1">
+            <graphic>
+                <ImageView fitWidth="20" fitHeight="20">
+                    <Image url="@icons/settings.png" />
+                </ImageView>
+            </graphic>
+        </MFXButton>
+    </GridPane>
 </VBox>
